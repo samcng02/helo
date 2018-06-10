@@ -1,0 +1,52 @@
+﻿
+<div ng-controller="CheckMachineAddController">
+    <return-title link="{{back(true)}}" titletext="{{pageApprove ? 'Duyệt phiếu kiểm tra máy' : 'Phiếu kiểm tra máy'}}"></return-title>
+
+    <div class="body-content">
+        <div ng-if="!isAdd">
+            <div class="form-group">
+                <b style="margin-right:30px">Mã phiếu: </b>
+                <span>{{invoice.CheckMachineCode}}</span>
+            </div>
+            <div class="form-group">
+                <b style="margin-right:30px">Tình trạng: </b>
+                <span class="status-{{invoice.Status}}">{{getStatus(invoice.Status)}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Ngày kiểm tra</label>
+            <input class="form-control datepicker" ng-model="invoice.CheckDate" ng-disabled="invoice.Status!='M'">
+        </div>
+        <div class="form-group">
+            <label>Bộ phận</label>
+            <select class="form-control" ng-model="invoice.DeptID" ng-disabled="invoice.Status!='M'" ng-click="ready=true">
+                <option ng-repeat="item in depts" ng-value="item.DeptID">{{item.DeptName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Loại tài sản</label>
+            <select class="form-control" ng-model="invoice.AssetID" ng-disabled="invoice.Status!='M'" ng-click="ready=true">
+                <option ng-repeat="item in assets" ng-value="item.AssetID">{{item.AssetCodeName}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div ng-repeat="item in invoice.checks">
+                {{item.CheckName}}
+                <label class="switch pull-right">
+                    <input ng-disabled="invoice.Status!='M'" type="checkbox" ng-checked="item.Status=='Y'" ng-click="checkStatus($index)">
+                    <i class="slider round"></i>
+                </label>
+                <hr />
+            </div>
+        </div>
+        <div class="alert-danger">{{message}}</div>
+
+        <button style="margin-bottom:5px" ng-if="invoice.Status=='M'" ng-click="save()" class="btn btn-primary btn-width-max">Lưu</button>
+        <button style="margin-bottom:5px" ng-if="invoice.Status=='M' && invoice.CheckMachineID!=0" ng-click="approve('D')" class="btn btn-primary btn-width-max">Gởi duyệt</button>
+        <div ng-if="invoice.Status=='D' && permission.Approved">
+            <button style="margin-bottom:5px" ng-click="approve('Y')" class="btn btn-primary btn-width-max">Duyệt</button>
+            <button style="margin-bottom:5px" ng-click="approve('T')" class="btn btn-danger btn-width-max">Không duyệt</button>
+        </div>
+    </div>
+</div>

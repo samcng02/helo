@@ -1,0 +1,44 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.bar-head {
+    background-color: #000000;
+    height: 32px;
+    width: 100%;
+    color: white;
+    /*margin-bottom: 5px;*/
+    /*padding: 0 !important;*/
+}
+
+.btn-with-max {
+    width: 100%;
+}
+
+.title {
+    background-color: #428bca;
+    height: 32px;
+    width: 100%;
+    color: white;
+    margin-bottom: 5px;
+    /*padding: 0 !important;*/
+}
+
+.blue {
+    color: blue;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+

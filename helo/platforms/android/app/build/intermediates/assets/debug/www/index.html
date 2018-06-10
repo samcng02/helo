@@ -1,0 +1,62 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/Site.css" rel="stylesheet" />
+    <link href="asset/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/customize.css" rel="stylesheet" />
+    <style>
+        .x {
+            border-top: 1px solid black;
+        }
+
+        .menu-active {
+            background-color: lavender;
+        }
+
+        .dropdown-backdrop {
+            background-color: gray;
+            opacity: 0.3;
+        }
+    </style>
+
+    <script src="js/scripts/jquery-3.3.1.min.js"></script>
+    <script src="asset/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/scripts/angular.min.js"></script>
+    <script src="js/scripts/angular-route.min.js"></script>
+</head>
+<body ng-app="mcar">
+    <!--button menu mini-->
+    <div class="bar-head" ng-if="user.result==1">
+        <ul class="nav nav-pills pull-right">
+            <li class="dropdown">
+                <a style="padding:2px !important" data-toggle="dropdown" class="dropdown-toggle">
+                    <i style="color:white; font-size:25px;" class="glyphicon glyphicon-list"></i>
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <li ng-repeat="menu in menus" style="padding:10px 5px" ng-class="{'x': menu.href == '#login', 'menu-active':menu.menuId == menuActive.menuId}">
+                        <a href="{{menu.href}}" style="font-size:17px">
+                            <i class="{{menu.classIcon}}" style="padding-right:7px"></i>
+                            <span>{{menu.menuName}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-view></div>
+
+    <script type="text/javascript">
+    </script>
+
+    <script src="index.js"></script>
+
+    <script src="app.js"></script>
+    <script src="route.js"></script>
+    <script src="directive/service.js"></script>
+    <script src="directive/returnTitle/returnTitle.js"></script>
+
+    <script src="controller/appControllers.js"></script>
+    <!--<script src="controller/appControllers.min.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,17 @@
+﻿<div ng-controller="HomeController">
+    <return-title link="" titletext="Trang chủ"></return-title>
+
+    <div class="col-xs-12" style="margin-top:20px">
+
+        <div ng-repeat="menu in menus|filter:menu.showAll=true" class="text-center col-xs-4" style="padding:10px 0px !important">
+            <div style="position:relative;width:100%;padding:5px;height:90px">
+                <a href="{{menu.href}}" ng-click="go(menu)" style="color:blue; text-decoration:none">
+                    <div style="height:35px">
+                        <i class="{{menu.classIcon}}" style="font-size:25px"></i>
+                    </div>
+                    <b style="font-size:13px;color:#434334">{{menu.menuName}}</b>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

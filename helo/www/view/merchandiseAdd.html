@@ -1,0 +1,57 @@
+﻿<style>
+    .col-xs-4, .col-xs-8, form-group {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+</style>
+
+<div ng-controller="MerchandiseAddController">
+    <return-title link="merchandise" titletext="Phiếu nhập hàng"></return-title>
+
+    <div class="body-content">
+        <form>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Mã phiếu:</div>
+                <div class="col-xs-8"> {{merchandise.MerchandiseCode}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Ngày nhập:</div>
+                <div class="col-xs-8"> {{merchandise.DateAdd}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Nhóm:</div>
+                <div class="col-xs-8"> {{merchandise.DeptID}}</div>
+            </div>
+
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Kho:</div>
+                <div class="col-xs-8"> {{merchandise.DeptCodeDept}} - {{merchandise.DepotName}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Mô tả:</div>
+                <div class="col-xs-8"> {{merchandise.CreateReceiptsCode}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Trạng thái:</div>
+                <span class="col-xs-8 status-{{merchandise.Status2}}">{{getStatus(merchandise.Status2)}}</span>
+
+            </div>
+        </form>
+        <div style="padding-top:5px">
+            <b style="font-size:16px">CHI TIẾT</b>
+            <hr style="margin-top:0px !important" />
+            <p ng-if="details.length==0">Không có chi tiết</p>
+            <div ng-repeat="item in details">
+                <p>Mã chi tiết: {{item.DetailCode}}</p>
+                <p>Tên chi tiết: {{item.DetailName}}</p>
+                <p>Đơn vị: {{item.DetailUnit}}</p>
+                <p>Quy cách: {{item.DetailStyle}}</p>
+                <hr />
+            </div>
+            <div ng-if="permission.Approved">
+                <button style="margin-bottom:5px" ng-click="approve(true)" class="btn btn-primary btn-width-max">Duyệt</button>
+                <button style="margin-bottom:5px" ng-click="approve(false)" class="btn btn-danger btn-width-max">Không duyệt</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿<div ng-controller="MerchandiseController">
+    <return-title link="#" titletext="Phiếu nhập hàng"></return-title>
+
+    <div class="body-content" ng-if="permission.View">
+        <div>
+            <button ng-click="getMerchandises()" class="btn btn-primary btn-width-max">
+                <i class="glyphicon glyphicon-search"></i>Tìm
+            </button>
+        </div>
+
+        <div style="padding-top:10px">
+            <hr />
+            <div ng-repeat="item in merchandises" ng-click="getMerchandise(item.MerchandiseID)">
+                <p>Mã phiếu: {{item.MerchandiseCode}}</p>
+                <p>Ngày nhập hàng: {{item.DateAdd}}</p>
+                <p>Bộ phận: {{item.DeptCodeDept}}</p>
+                <p>Kho: {{item.DepotName}}</p>
+                <p>
+                    Tình trạng: <span class="status-{{item.Status2}}">{{getStatus(item.Status2)}}</span>
+                </p>
+                <hr />
+            </div>
+        </div>
+        <div class="text-center" ng-show="merchandises.length == paging.getRowCount()">
+            <a ng-click="loadMore()" style="text-decoration:none">Xem thêm</a>
+            <small class="glyphicon glyphicon-chevron-down text-primary"></small>
+        </div>
+    </div>
+    <div class="text-danger" ng-if="!permission.View && false">Bạn không có quyền menu này</div>
+</div>

@@ -1,0 +1,32 @@
+﻿<html ng-app="mcar">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/Site.css" rel="stylesheet" />
+
+    <style>
+        .btn-with-max {
+            width: 100%;
+        }
+    </style>
+
+    <script src="js/scripts/jquery-3.3.1.min.js"></script>
+    <script src="js/scripts/angular.min.js"></script>
+    <script src="js/LoginController.js"></script>
+</head>
+<body ng-controller="loginController" class="body-content">
+    <h3>Đăng nhập</h3>
+    <form>
+        <div class="form-group">
+            <input class="form-control" placeholder="Nhập username" ng-model="username" />
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Nhập password" ng-model="password" />
+        </div>
+        <button class="btn btn-primary btn-with-max" ng-click="login()">Đăng nhập</button>
+    </form>
+
+    <script>
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿<div ng-controller="MaterialRequestController">
+    <return-title link="#" titletext="Phiếu yêu cầu vật tư"></return-title>
+
+    <div class="body-content" ng-if="permission.View">
+        <div>
+            <button ng-click="getInvoice()" class="btn btn-primary btn-width-max">
+                <span class="glyphicon glyphicon-search"></span>Tìm
+            </button>
+        </div>
+        <div style="padding-top:10px">
+            <hr />
+            <div ng-repeat="item in invoices" ng-click="getDetail(item.CreateRequestID)">
+                <p>Mã phiếu: {{item.DetailCode}}</p>
+                <p>Ngày yêu cầu: {{item.CreateRequestDate}}</p>
+                <p>Bộ phận: {{item.DeptCodeDept}}</p>
+                <p>Người yêu cầu: {{item.UserRequest}}</p>
+                <p>
+                    Tình trạng:
+                    <span class="{{'status-' + item.Status}}">{{getStatus(item.Status)}}</span>
+                </p>
+                <hr />
+            </div>
+        </div>
+        <button class="btn btn-primary btn-width-max" ng-click="loadMore()" ng-show="invoices.length == paging.getRowCount()">Xem thêm</button>
+    </div>
+    <p class="text-danger" ng-if="!permission.View">Bạn không có quyền menu này</p>
+</div>

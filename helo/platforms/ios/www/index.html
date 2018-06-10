@@ -1,0 +1,44 @@
+﻿<html ng-app="mcar">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/Site.css" rel="stylesheet" />
+
+    <style>
+    </style>
+
+    <script src="js/scripts/jquery-3.3.1.min.js"></script>
+    <script src="js/scripts/angular.min.js"></script>
+    <script src="js/IndexController.js"></script>
+    <script src="js/Common/service.js"></script>
+</head>
+<body ng-controller="indexController">
+    <div class="bar-head">
+        <span class="pull-right">{{user.Username}}</span>
+    </div>
+    <div class="title">
+        <b style="font-size:16px; padding-left:10px">Kiểm tra danh mục</b>
+    </div>
+
+    <div class="body-content">
+        <div>
+            <button ng-click="getInvoice()" class="btn btn-primary" style="width:49%">Tìm</button>
+            <button ng-click="addInvoice()" class="btn btn-primary pull-right" style="width:49%">Thêm mới</button>
+        </div>
+        <div style="padding-top:10px">
+            <hr />
+            <div ng-repeat="item in invoices" ng-click="addInvoice(item.Id)">
+                <p>STT: {{$index+1}}</p>
+                <p>Mã phiếu: {{item.Id}}</p>
+                <p>Ngày kiểm tra: {{item.CreatedDate.slice(6,-2) | date:"dd/MM/yyyy"}}</p>
+                <p>Tài sản: {{item.Asset}}</p>
+                <p>Tình trạng: <span ng-class="{blue : item.Status==0}">{{item.Status==0 ? "Đã duyệt" : "Chưa duyệt"}}</span></p>
+                <hr />
+            </div>
+        </div>
+        <button class="btn btn-primary btn-with-max" ng-click="loadMore()" ng-show="showLoadMore">Xem thêm</button>
+    </div>
+
+    <script>
+    </script>
+</body>
+</html>

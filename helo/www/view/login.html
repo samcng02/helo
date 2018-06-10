@@ -1,0 +1,13 @@
+﻿<div ng-controller="LoginController" class="body-content">
+    <img class="text-center" style="display: block; width:50%; margin:30px auto" src="img/logo.png" />
+    <form>
+        <div class="form-group">
+            <input class="form-control" placeholder="Tên đăng nhập" ng-model="username" autocomplete="on"/>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Mật khẩu" ng-model="password" autocomplete="on"/>
+        </div>
+        <div ng-if="loginFail" class="help-block alert-danger">Tên đăng nhập hoặc mật khẩu không đúng</div>
+        <button ng-disabled="!username || !password" class="btn btn-primary btn-width-max" ng-click="login()">Đăng nhập</button>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+﻿<div ng-controller="MaintainXController">
+    <return-title link="#" titletext="Xác nhận phiếu bảo trì"></return-title>
+
+    <div class="body-content" ng-if="permission.View">
+        <div>
+            <button ng-click="getInvoice()" class="btn btn-primary btn-width-max">
+                <span class="glyphicon glyphicon-search"></span>Tìm
+            </button>
+        </div>
+        <div style="padding-top:10px">
+            <hr />
+            <div ng-repeat="item in invoices" ng-click="getDetail(item.CheckMachineID)">
+                <p>Mã phiếu: {{item.CreateReceiptsCode}}</p>
+                <p>Ngày kiểm tra: {{item.CreateReceiptsDate}}</p>
+                <p>Tài sản: {{item.AssetCode}}</p>
+                <p>Loại bảo trì: {{item.CreateReceiptsType}}</p>
+                <p>
+                    Tình trạng: <span class="{{'status-' + item.Status2}}">{{getStatus(item.Status2)}}</span>
+                </p>
+                <hr />
+            </div>
+        </div>
+        <button class="btn btn-primary btn-width-max" ng-click="loadMore()" ng-show="invoices.length == paging.getRowCount()">Xem thêm</button>
+    </div>
+    <p class="text-danger" ng-if="!permission.View">Bạn không có quyền menu này</p>
+</div>

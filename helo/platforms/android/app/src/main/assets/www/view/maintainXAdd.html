@@ -1,0 +1,75 @@
+﻿<style>
+    .col-xs-4, .col-xs-8, .form-group {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+</style>
+<div ng-controller="MaintainXAddController">
+    <return-title link="maintainX" titletext="Xác nhận phiếu bảo trì"></return-title>
+
+    <div class="body-content">
+        <form>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Mã phiếu:</div>
+                <div class="col-xs-8"> {{invoice.CreateReceiptsCode}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Ngày tiếp nhận:</div>
+                <div class="col-xs-8"> {{invoice.CreateReceiptsDate}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Tài sản:</div>
+                <div class="col-xs-8"> {{invoice.AssetID}}</div>
+            </div>
+
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Loại bảo trì:</div>
+                <div class="col-xs-8"> {{invoice.CreateReceiptsType}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Phiếu bảo trì:</div>
+                <div class="col-xs-8"> {{invoice.CheckMachineCode}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Người báo:</div>
+                <div class="col-xs-8"> {{invoice.CreatedBy}}</div>
+            </div>
+
+            <div ng-if="invoice.Status!='H'" class="form-group col-xs-12">
+                <div class="col-xs-4">Người tiếp nhận:</div>
+                <div class="col-xs-8"> {{invoice.UserAccept}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Mô tả:</div>
+                <div class="col-xs-8"> {{invoice.Detail}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Trạng thái:</div>
+                <div class="col-xs-8 {{'status-' + invoice.Status}}">{{getStatus(invoice.Status)}}</div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-4">Ngày tạo:</div>
+                <div class="col-xs-8"> {{invoice.CreateReceiptsDate}}</div>
+            </div>
+        </form>
+        <div style="padding-top:5px">
+            <b style="font-size:16px">CHI TIẾT</b>
+            <hr style="margin-top:0px !important" />
+            <p ng-if="details.length==0">Không có chi tiết</p>
+            <div ng-repeat="item in details">
+                <p>Mã chi tiết: {{item.DetailCode}}</p>
+                <p>Tên chi tiết: {{item.DetailName}}</p>
+                <p>Đơn vị: {{item.DetailUnit}}</p>
+                <p>Quy cách: {{item.DetailStyle}}</p>
+                <p>Mức độ lỗi: {{item.ErrLevel}}</p>
+                <p>Cách xử lý: {{item.Handling}}</p>
+                <p>Số lượng: {{item.Number}}</p>
+                <hr />
+            </div>
+            <div ng-if="permission.Approved && (invoice.Status=='D' || invoice.Status=='H')">
+                <button style="margin-bottom:5px" class="btn btn-primary btn-width-max" ng-click="approve(true)">Duyệt</button>
+                <button style="margin-bottom:5px" ng-click="approve(false)" class="btn btn-danger btn-width-max">Không duyệt</button>
+            </div>
+        </div>
+    </div>
+</div>
